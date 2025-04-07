@@ -1,5 +1,5 @@
 {
-    "name": "cak_verify",
+    "name": "CAK Verify",
     "short_name": "cak_verify",
     "start_url": ".",
     "display": "standalone",
