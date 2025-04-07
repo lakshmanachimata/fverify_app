@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/signinmodel.dart';
 
 class SignInViewModel extends ChangeNotifier {
-  final emailController = TextEditingController();
+  final userNameController = TextEditingController();
   final passwordController = TextEditingController();
 
   bool _isLoading = false;
@@ -22,14 +22,14 @@ class SignInViewModel extends ChangeNotifier {
 
   SignInModel get signInModel {
     return SignInModel(
-      username: emailController.text,
+      username: userNameController.text,
       password: passwordController.text,
     );
   }
 
   @override
   void dispose() {
-    emailController.dispose();
+    userNameController.dispose();
     passwordController.dispose();
     super.dispose();
   }
