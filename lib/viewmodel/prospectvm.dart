@@ -129,6 +129,11 @@ class ProspectViewModel extends ChangeNotifier {
     print("Form saved: ${_prospect.toString()}");
   }
 
+  String? getMobileNUmber() {
+    // Logic to get the mobile number
+    return prospect.mobileNumber;
+  }
+
   void completeForm() {
     // Logic to complete the form submission
     print("Form completed: ${_prospect.toString()}");

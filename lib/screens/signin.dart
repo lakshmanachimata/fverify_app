@@ -1,3 +1,4 @@
+import 'package:cak_verify/screens/prospects.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -86,7 +87,13 @@ class SignInView extends StatelessWidget {
                       ? CircularProgressIndicator()
                       : ElevatedButton(
                         onPressed: () {
-                          viewModel.signIn();
+                          // viewModel.signIn();
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProspectsView(),
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Color(0xFF8D5B4C),

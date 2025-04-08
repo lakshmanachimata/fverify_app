@@ -1,9 +1,11 @@
+import 'package:cak_verify/models/prospectmodel.dart';
 import 'package:cak_verify/viewmodel/prospectvm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProspectView extends StatelessWidget {
-  const ProspectView({super.key});
+  final ProspectModel prospectModel;
+  const ProspectView({super.key, required this.prospectModel});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +28,13 @@ class ProspectView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildTextFieldWithButton(
-                label: "Enter applicant name",
+                label: "Confirm applicant name",
                 buttonText: "Verify",
                 onChanged: viewModel.updateApplicantName,
+              ),
+              Text(
+                "Mobile number: ${viewModel.prospect.mobileNumber!}",
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 16),
               _buildGenderSelection(viewModel),

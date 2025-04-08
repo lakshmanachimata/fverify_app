@@ -1,12 +1,16 @@
+import 'package:cak_verify/models/prospectmodel.dart';
+import 'package:cak_verify/screens/prospect.dart';
+import 'package:cak_verify/utils.dart';
 import 'package:cak_verify/viewmodel/prospectvm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProspectView extends StatelessWidget {
-  const ProspectView({super.key});
+class ProspectsView extends StatelessWidget {
+  const ProspectsView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List<ProspectModel> prospects = generateRandomProspects();
     return ChangeNotifierProvider(
       create: (_) => ProspectViewModel(),
       child: Scaffold(
@@ -53,14 +57,12 @@ class ProspectView extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 8, // Replace with ViewModel data length
+                itemCount:
+                    prospects.length, // Replace with ViewModel data length
                 itemBuilder: (context, index) {
                   return _buildProspectCard(
-                    id: 'PRO00${index + 1}',
-                    name: 'Name ${index + 1}', // Replace with ViewModel data
-                    phone:
-                        '+1 234 567 890${index + 1}', // Replace with ViewModel data
-                    status: _getStatus(index), // Replace with ViewModel logic
+                    prospects[index], // Replace with ViewModel logic
+                    context,
                   );
                 },
               ),
@@ -84,59 +86,58 @@ class ProspectView extends StatelessWidget {
     );
   }
 
-  Widget _buildProspectCard({
-    required String id,
-    required String name,
-    required String phone,
-    required String status,
-  }) {
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(id, style: TextStyle(fontWeight: FontWeight.bold)),
-                SizedBox(height: 4),
-                Text(name),
-                SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(Icons.phone, size: 16, color: Colors.grey),
-                    SizedBox(width: 4),
-                    Text(phone),
-                  ],
-                ),
-              ],
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              decoration: BoxDecoration(
-                color: _getStatusColor(status),
-                borderRadius: BorderRadius.circular(16),
+  Widget _buildProspectCard(ProspectModel prosect, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProspectView(prospectModel: prosect),
+          ),
+        );
+      },
+      child: Card(
+        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    prosect.prospectId!,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 4),
+                  Text(prosect.applicantName!),
+                  SizedBox(height: 4),
+                  Row(
+                    children: [
+                      Icon(Icons.phone, size: 16, color: Colors.grey),
+                      SizedBox(width: 4),
+                      Text(prosect.mobileNumber!),
+                    ],
+                  ),
+                ],
               ),
-              child: Text(status, style: TextStyle(color: Colors.white)),
-            ),
-          ],
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  color: _getStatusColor(prosect.status!),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Text(
+                  prosect.status!,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  String _getStatus(int index) {
-    // Replace with ViewModel logic
-    const statuses = [
-      'Pending',
-      'On Visit',
-      'In Progress',
-      'Completed',
-      'Postponed',
-    ];
-    return statuses[index % statuses.length];
   }
 
   Color _getStatusColor(String status) {
