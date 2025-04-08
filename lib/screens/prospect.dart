@@ -247,7 +247,7 @@ class ProspectView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Upload Images (${viewModel.prospect.uploadedImages.length}/5)"),
+        Text("Upload Images"),
         Wrap(
           spacing: 8,
           children: List.generate(5, (index) {

@@ -34,10 +34,7 @@ class ProspectService {
         colleagueDesignation: 'Designation ${index + 1}',
         colleagueMobile: '+1 456 789 12${random.nextInt(100)}',
         status: _getStatus(index),
-        uploadedImages: List.generate(
-          random.nextInt(5),
-          (i) => 'https://example.com/image${index + 1}_${i + 1}.jpg',
-        ),
+        uploadedImages: [],
         remarks: 'Remarks for applicant ${index + 1}',
       );
       return prospectModel;
