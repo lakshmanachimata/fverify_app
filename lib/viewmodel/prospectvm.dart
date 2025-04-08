@@ -3,6 +3,33 @@ import 'package:flutter/material.dart';
 import '../models/prospectmodel.dart';
 
 class ProspectViewModel extends ChangeNotifier {
+  void initializeWithProspect(ProspectModel prospect) {
+    _prospect.applicantName = prospect.applicantName;
+    _prospect.mobileNumber = prospect.mobileNumber;
+    _prospect.gender = prospect.gender;
+    _prospect.age = prospect.age;
+    _prospect.residentialAddress = prospect.residentialAddress;
+    _prospect.yearsOfStay = prospect.yearsOfStay;
+    _prospect.numberOfFamilyMembers = prospect.numberOfFamilyMembers;
+    _prospect.referenceName = prospect.referenceName;
+    _prospect.referenceRelation = prospect.referenceRelation;
+    _prospect.referenceMobile = prospect.referenceMobile;
+    _prospect.employmentType = prospect.employmentType;
+    _prospect.officeAddress = prospect.officeAddress;
+    _prospect.yearsInCurrentOffice = prospect.yearsInCurrentOffice;
+    _prospect.role = prospect.role;
+    _prospect.empId = prospect.empId;
+    _prospect.previousExperience = prospect.previousExperience;
+    _prospect.grossSalary = prospect.grossSalary;
+    _prospect.netSalary = prospect.netSalary;
+    _prospect.colleagueName = prospect.colleagueName;
+    _prospect.colleagueDesignation = prospect.colleagueDesignation;
+    _prospect.colleagueMobile = prospect.colleagueMobile;
+    _prospect.uploadedImages = List.from(prospect.uploadedImages);
+    _prospect.remarks = prospect.remarks;
+    notifyListeners();
+  }
+
   final ProspectModel _prospect = ProspectModel();
 
   ProspectModel get prospect => _prospect;

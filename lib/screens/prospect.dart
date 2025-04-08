@@ -5,160 +5,154 @@ import 'package:provider/provider.dart';
 
 class ProspectView extends StatelessWidget {
   final ProspectModel prospectModel;
+
   const ProspectView({super.key, required this.prospectModel});
 
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<ProspectViewModel>(context);
-    return ChangeNotifierProvider(
-      create: (_) => ProspectViewModel(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("Prospect Details"),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Prospect Details"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildTextFieldWithButton(
-                label: "Confirm applicant name",
-                buttonText: "Verify",
-                onChanged: viewModel.updateApplicantName,
-              ),
-              Text(
-                "Mobile number: ${viewModel.prospect.mobileNumber!}",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16),
-              _buildGenderSelection(viewModel),
-              SizedBox(height: 16),
-              _buildTextField(
-                label: "Age",
-                keyboardType: TextInputType.number,
-                onChanged:
-                    (value) => viewModel.updateAge(int.tryParse(value) ?? 0),
-              ),
-              SizedBox(height: 16),
-              _buildTextFieldWithButton(
-                label: "Residential address",
-                buttonText: "Verify",
-                onChanged: viewModel.updateResidentialAddress,
-              ),
-              SizedBox(height: 16),
-              _buildTextField(
-                label: "Years of stay",
-                keyboardType: TextInputType.number,
-                onChanged:
-                    (value) =>
-                        viewModel.updateYearsOfStay(int.tryParse(value) ?? 0),
-              ),
-              SizedBox(height: 16),
-              _buildTextField(
-                label: "Number of family members",
-                keyboardType: TextInputType.number,
-                onChanged:
-                    (value) => viewModel.updateNumberOfFamilyMembers(
-                      int.tryParse(value) ?? 0,
-                    ),
-              ),
-              SizedBox(height: 16),
-              Text(
-                "Reference Details",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              _buildTextField(
-                label: "Reference name",
-                onChanged: viewModel.updateReferenceName,
-              ),
-              _buildTextField(
-                label: "Relation",
-                onChanged: viewModel.updateReferenceRelation,
-              ),
-              _buildTextField(
-                label: "Mobile number",
-                keyboardType: TextInputType.phone,
-                onChanged: viewModel.updateReferenceMobile,
-              ),
-              SizedBox(height: 16),
-              _buildEmploymentTypeSelection(viewModel),
-              SizedBox(height: 16),
-              _buildTextField(
-                label: "Office address",
-                onChanged: viewModel.updateOfficeAddress,
-              ),
-              _buildTextField(
-                label: "Years of working in current office",
-                keyboardType: TextInputType.number,
-                onChanged:
-                    (value) => viewModel.updateYearsInCurrentOffice(
-                      int.tryParse(value) ?? 0,
-                    ),
-              ),
-              _buildTextField(
-                label: "Role of applicant",
-                onChanged: viewModel.updateRole,
-              ),
-              _buildTextField(
-                label: "EMP ID",
-                onChanged: viewModel.updateEmpId,
-              ),
-              _buildTextField(
-                label: "Previous experience",
-                onChanged: viewModel.updatePreviousExperience,
-              ),
-              _buildTextField(
-                label: "Gross salary",
-                keyboardType: TextInputType.number,
-                onChanged:
-                    (value) => viewModel.updateGrossSalary(
-                      double.tryParse(value) ?? 0.0,
-                    ),
-              ),
-              _buildTextField(
-                label: "Net salary",
-                keyboardType: TextInputType.number,
-                onChanged:
-                    (value) => viewModel.updateNetSalary(
-                      double.tryParse(value) ?? 0.0,
-                    ),
-              ),
-              SizedBox(height: 16),
-              Text(
-                "Colleague Reference",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              _buildTextField(
-                label: "Name",
-                onChanged: viewModel.updateColleagueName,
-              ),
-              _buildTextField(
-                label: "Designation",
-                onChanged: viewModel.updateColleagueDesignation,
-              ),
-              _buildTextField(
-                label: "Mobile number",
-                keyboardType: TextInputType.phone,
-                onChanged: viewModel.updateColleagueMobile,
-              ),
-              SizedBox(height: 16),
-              _buildImageUploadSection(viewModel),
-              SizedBox(height: 16),
-              _buildTextField(
-                label: "Enter remarks/observations",
-                maxLines: 3,
-                onChanged: viewModel.updateRemarks,
-              ),
-              SizedBox(height: 16),
-              _buildActionButtons(viewModel),
-            ],
-          ),
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildTextFieldWithButton(
+              label: "Confirm applicant name",
+              buttonText: "Verify",
+              onChanged: viewModel.updateApplicantName,
+            ),
+            Text(
+              "Mobile number: ${viewModel.prospect.mobileNumber!}",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 16),
+            _buildGenderSelection(viewModel),
+            SizedBox(height: 16),
+            _buildTextField(
+              label: "Age",
+              keyboardType: TextInputType.number,
+              onChanged:
+                  (value) => viewModel.updateAge(int.tryParse(value) ?? 0),
+            ),
+            SizedBox(height: 16),
+            _buildTextFieldWithButton(
+              label: "Residential address",
+              buttonText: "Verify",
+              onChanged: viewModel.updateResidentialAddress,
+            ),
+            SizedBox(height: 16),
+            _buildTextField(
+              label: "Years of stay",
+              keyboardType: TextInputType.number,
+              onChanged:
+                  (value) =>
+                      viewModel.updateYearsOfStay(int.tryParse(value) ?? 0),
+            ),
+            SizedBox(height: 16),
+            _buildTextField(
+              label: "Number of family members",
+              keyboardType: TextInputType.number,
+              onChanged:
+                  (value) => viewModel.updateNumberOfFamilyMembers(
+                    int.tryParse(value) ?? 0,
+                  ),
+            ),
+            SizedBox(height: 16),
+            Text(
+              "Reference Details",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            _buildTextField(
+              label: "Reference name",
+              onChanged: viewModel.updateReferenceName,
+            ),
+            _buildTextField(
+              label: "Relation",
+              onChanged: viewModel.updateReferenceRelation,
+            ),
+            _buildTextField(
+              label: "Mobile number",
+              keyboardType: TextInputType.phone,
+              onChanged: viewModel.updateReferenceMobile,
+            ),
+            SizedBox(height: 16),
+            _buildEmploymentTypeSelection(viewModel),
+            SizedBox(height: 16),
+            _buildTextField(
+              label: "Office address",
+              onChanged: viewModel.updateOfficeAddress,
+            ),
+            _buildTextField(
+              label: "Years of working in current office",
+              keyboardType: TextInputType.number,
+              onChanged:
+                  (value) => viewModel.updateYearsInCurrentOffice(
+                    int.tryParse(value) ?? 0,
+                  ),
+            ),
+            _buildTextField(
+              label: "Role of applicant",
+              onChanged: viewModel.updateRole,
+            ),
+            _buildTextField(label: "EMP ID", onChanged: viewModel.updateEmpId),
+            _buildTextField(
+              label: "Previous experience",
+              onChanged: viewModel.updatePreviousExperience,
+            ),
+            _buildTextField(
+              label: "Gross salary",
+              keyboardType: TextInputType.number,
+              onChanged:
+                  (value) => viewModel.updateGrossSalary(
+                    double.tryParse(value) ?? 0.0,
+                  ),
+            ),
+            _buildTextField(
+              label: "Net salary",
+              keyboardType: TextInputType.number,
+              onChanged:
+                  (value) =>
+                      viewModel.updateNetSalary(double.tryParse(value) ?? 0.0),
+            ),
+            SizedBox(height: 16),
+            Text(
+              "Colleague Reference",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            _buildTextField(
+              label: "Name",
+              onChanged: viewModel.updateColleagueName,
+            ),
+            _buildTextField(
+              label: "Designation",
+              onChanged: viewModel.updateColleagueDesignation,
+            ),
+            _buildTextField(
+              label: "Mobile number",
+              keyboardType: TextInputType.phone,
+              onChanged: viewModel.updateColleagueMobile,
+            ),
+            SizedBox(height: 16),
+            _buildImageUploadSection(viewModel),
+            SizedBox(height: 16),
+            _buildTextField(
+              label: "Enter remarks/observations",
+              maxLines: 3,
+              onChanged: viewModel.updateRemarks,
+            ),
+            SizedBox(height: 16),
+            _buildActionButtons(viewModel),
+          ],
         ),
       ),
     );
