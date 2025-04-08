@@ -1,5 +1,6 @@
 import 'package:cak_verify/models/prospectmodel.dart';
 import 'package:cak_verify/screens/prospect.dart';
+import 'package:cak_verify/screens/signin.dart';
 import 'package:cak_verify/viewmodel/prospectsvm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,43 @@ class ProspectsView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Color(0xFFFCEFEA),
           elevation: 0,
-          title: Text('Prospects', style: TextStyle(color: Colors.black)),
+          title: Text(
+            'Applicants',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          actions: [
+            Container(
+              margin: EdgeInsets.only(right: 16.0), // Add right margin
+              decoration: BoxDecoration(
+                color: Color(0xFF8D5B4C),
+                border: Border.all(color: Colors.black), // Add border
+                borderRadius: BorderRadius.circular(
+                  8.0,
+                ), // Optional: Rounded corners
+              ),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignInView()),
+                  );
+                  // Add your logout logic here
+                },
+                child: Text(
+                  'Logout',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
         body: Consumer<ProspectsViewModel>(
           builder: (context, viewModel, child) {
