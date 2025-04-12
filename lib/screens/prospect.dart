@@ -27,10 +27,11 @@ class ProspectView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildTextFieldWithButton(
-              label: "Confirm applicant name",
+              label: viewModel.prospect.applicantName!,
               buttonText: "Verify",
               onChanged: viewModel.updateApplicantName,
             ),
+            SizedBox(height: 4),
             Text(
               "Mobile number: ${viewModel.prospect.mobileNumber!}",
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -41,6 +42,7 @@ class ProspectView extends StatelessWidget {
             _buildTextField(
               label: "Age",
               keyboardType: TextInputType.number,
+              isMandatory: true,
               onChanged:
                   (value) => viewModel.updateAge(int.tryParse(value) ?? 0),
             ),
@@ -48,6 +50,7 @@ class ProspectView extends StatelessWidget {
             _buildTextFieldWithButton(
               label: "Residential address",
               buttonText: "Verify",
+              maxLines: 4,
               onChanged: viewModel.updateResidentialAddress,
             ),
             SizedBox(height: 16),
@@ -87,71 +90,140 @@ class ProspectView extends StatelessWidget {
             ),
             SizedBox(height: 16),
             _buildEmploymentTypeSelection(viewModel),
-            SizedBox(height: 16),
-            _buildTextField(
-              label: "Office address",
-              onChanged: viewModel.updateOfficeAddress,
-            ),
-            _buildTextField(
-              label: "Years of working in current office",
-              keyboardType: TextInputType.number,
-              onChanged:
-                  (value) => viewModel.updateYearsInCurrentOffice(
-                    int.tryParse(value) ?? 0,
-                  ),
-            ),
-            _buildTextField(
-              label: "Role of applicant",
-              onChanged: viewModel.updateRole,
-            ),
-            _buildTextField(label: "EMP ID", onChanged: viewModel.updateEmpId),
-            _buildTextField(
-              label: "Previous experience",
-              onChanged: viewModel.updatePreviousExperience,
-            ),
-            _buildTextField(
-              label: "Gross salary",
-              keyboardType: TextInputType.number,
-              onChanged:
-                  (value) => viewModel.updateGrossSalary(
-                    double.tryParse(value) ?? 0.0,
-                  ),
-            ),
-            _buildTextField(
-              label: "Net salary",
-              keyboardType: TextInputType.number,
-              onChanged:
-                  (value) =>
-                      viewModel.updateNetSalary(double.tryParse(value) ?? 0.0),
-            ),
-            SizedBox(height: 16),
-            Text(
-              "Colleague Reference",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            _buildTextField(
-              label: "Name",
-              onChanged: viewModel.updateColleagueName,
-            ),
-            _buildTextField(
-              label: "Designation",
-              onChanged: viewModel.updateColleagueDesignation,
-            ),
-            _buildTextField(
-              label: "Mobile number",
-              keyboardType: TextInputType.phone,
-              onChanged: viewModel.updateColleagueMobile,
-            ),
-            SizedBox(height: 16),
-            _buildImageUploadSection(viewModel),
-            SizedBox(height: 16),
-            _buildTextField(
-              label: "Enter remarks/observations",
-              maxLines: 3,
-              onChanged: viewModel.updateRemarks,
-            ),
-            SizedBox(height: 16),
-            _buildActionButtons(viewModel),
+            if (viewModel.prospect.employmentType == "Employee") ...[
+              SizedBox(height: 16),
+              _buildTextFieldWithButton(
+                label: "Office address",
+                buttonText: "Verify",
+                maxLines: 4,
+                onChanged: viewModel.updateOfficeAddress,
+              ),
+              _buildTextField(
+                label: "Years of working in current office",
+                keyboardType: TextInputType.number,
+                onChanged:
+                    (value) => viewModel.updateYearsInCurrentOffice(
+                      int.tryParse(value) ?? 0,
+                    ),
+              ),
+              _buildTextField(
+                label: "Role of applicant",
+                onChanged: viewModel.updateRole,
+              ),
+              _buildTextField(
+                label: "EMP ID",
+                onChanged: viewModel.updateEmpId,
+              ),
+              _buildTextField(
+                label: "Previous experience",
+                onChanged: viewModel.updatePreviousExperience,
+              ),
+              _buildTextField(
+                label: "Gross salary",
+                keyboardType: TextInputType.number,
+                onChanged:
+                    (value) => viewModel.updateGrossSalary(
+                      double.tryParse(value) ?? 0.0,
+                    ),
+              ),
+              _buildTextField(
+                label: "Net salary",
+                keyboardType: TextInputType.number,
+                onChanged:
+                    (value) => viewModel.updateNetSalary(
+                      double.tryParse(value) ?? 0.0,
+                    ),
+              ),
+              SizedBox(height: 16),
+              Text(
+                "Colleague Reference",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              _buildTextField(
+                label: "Name",
+                onChanged: viewModel.updateColleagueName,
+              ),
+              _buildTextField(
+                label: "Designation",
+                onChanged: viewModel.updateColleagueDesignation,
+              ),
+              _buildTextField(
+                label: "Mobile number",
+                keyboardType: TextInputType.phone,
+                onChanged: viewModel.updateColleagueMobile,
+              ),
+              SizedBox(height: 16),
+              _buildImageUploadSection(viewModel),
+              SizedBox(height: 16),
+              _buildTextField(
+                label: "Enter remarks/observations",
+                maxLines: 3,
+                onChanged: viewModel.updateRemarks,
+              ),
+              SizedBox(height: 16),
+              _buildActionButtons(viewModel),
+            ],
+            if (viewModel.prospect.employmentType == "Business") ...[
+              SizedBox(height: 16),
+              _buildTextFieldWithButton(
+                label: "Businesss address",
+                buttonText: "Verify",
+                maxLines: 4,
+                onChanged: viewModel.updateOfficeAddress,
+              ),
+              _buildTextField(
+                label: "Years of Business",
+                keyboardType: TextInputType.number,
+                onChanged:
+                    (value) => viewModel.updateYearsInCurrentOffice(
+                      int.tryParse(value) ?? 0,
+                    ),
+              ),
+              _buildTextField(
+                label: "Nature of Business",
+                onChanged: viewModel.updateRole,
+              ),
+              _buildTextField(
+                label: "Previous experience",
+                onChanged: viewModel.updatePreviousExperience,
+              ),
+              _buildTextField(
+                label: "Gross Revenue",
+                keyboardType: TextInputType.number,
+                onChanged:
+                    (value) => viewModel.updateGrossSalary(
+                      double.tryParse(value) ?? 0.0,
+                    ),
+              ),
+              SizedBox(height: 16),
+              Text(
+                "Business Reference",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              _buildTextField(
+                label: "Name",
+                onChanged: viewModel.updateColleagueName,
+              ),
+              _buildTextField(
+                label: "Nature of Business",
+                onChanged: viewModel.updateColleagueDesignation,
+              ),
+              _buildTextField(
+                label: "Mobile number",
+                keyboardType: TextInputType.phone,
+                onChanged: viewModel.updateColleagueMobile,
+              ),
+              SizedBox(height: 16),
+              _buildImageUploadSection(viewModel),
+              SizedBox(height: 16),
+              _buildTextField(
+                label: "Enter remarks/observations",
+                maxLines: 3,
+                onChanged: viewModel.updateRemarks,
+              ),
+              SizedBox(height: 16),
+              _buildActionButtons(viewModel),
+            ],
           ],
         ),
       ),
@@ -162,10 +234,14 @@ class ProspectView extends StatelessWidget {
     required String label,
     TextInputType keyboardType = TextInputType.text,
     int maxLines = 1,
+    bool isMandatory = false,
     required Function(String) onChanged,
   }) {
     return TextField(
-      decoration: InputDecoration(labelText: label),
+      decoration:
+          isMandatory
+              ? InputDecoration(labelText: label, errorText: '')
+              : InputDecoration(labelText: label),
       keyboardType: keyboardType,
       maxLines: maxLines,
       onChanged: onChanged,
@@ -175,6 +251,7 @@ class ProspectView extends StatelessWidget {
   Widget _buildTextFieldWithButton({
     required String label,
     required String buttonText,
+    int maxLines = 1,
     required Function(String) onChanged,
   }) {
     return Row(
@@ -183,10 +260,17 @@ class ProspectView extends StatelessWidget {
           child: TextField(
             decoration: InputDecoration(labelText: label),
             onChanged: onChanged,
+            maxLines: maxLines,
           ),
         ),
         SizedBox(width: 8),
-        ElevatedButton(onPressed: () {}, child: Text(buttonText)),
+        ElevatedButton(
+          onPressed: () {
+            // Logic to verify the text field value
+            print("Verifying: $label");
+          },
+          child: Text(buttonText),
+        ),
       ],
     );
   }
@@ -221,9 +305,17 @@ class ProspectView extends StatelessWidget {
               backgroundColor:
                   viewModel.prospect.employmentType == "Employee"
                       ? Colors.brown
-                      : Colors.grey[300],
+                      : Color(0xFFFFF3F0),
             ),
-            child: Text("Employee"),
+            child: Text(
+              "Employee",
+              style: TextStyle(
+                color:
+                    viewModel.prospect.employmentType == "Employee"
+                        ? Colors.white
+                        : Colors.black,
+              ),
+            ),
           ),
         ),
         SizedBox(width: 8),
@@ -234,9 +326,17 @@ class ProspectView extends StatelessWidget {
               backgroundColor:
                   viewModel.prospect.employmentType == "Business"
                       ? Colors.brown
-                      : Colors.grey[300],
+                      : Color(0xFFFFF3F0),
             ),
-            child: Text("Business"),
+            child: Text(
+              "Business",
+              style: TextStyle(
+                color:
+                    viewModel.prospect.employmentType == "Business"
+                        ? Colors.white
+                        : Colors.black,
+              ),
+            ),
           ),
         ),
       ],
@@ -294,7 +394,7 @@ class ProspectView extends StatelessWidget {
 
   Widget _buildActionButtons(ProspectViewModel viewModel) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ElevatedButton(
           onPressed: viewModel.completeForm,
