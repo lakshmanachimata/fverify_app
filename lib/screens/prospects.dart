@@ -15,8 +15,9 @@ class ProspectsView extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => ProspectsViewModel()..fetchProspects(),
       child: Scaffold(
+        backgroundColor: Color(0XFFFCEAE5),
         appBar: AppBar(
-          backgroundColor: Color(0xFFFCEFEA),
+          backgroundColor: Color(0xFFFFDBD1),
           elevation: 0,
           title: Text(
             'Applicants',
@@ -27,8 +28,15 @@ class ProspectsView extends StatelessWidget {
             ),
           ),
           actions: [
+            IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
             Container(
-              margin: EdgeInsets.only(right: 16.0), // Add right margin
+              width: 80.0, // Set the width of the container
+              height: 40.0, // Set the height of the container
+              margin: EdgeInsets.only(
+                right: 24.0,
+                left: 0.0,
+                bottom: 0.0,
+              ), // Add right margin
               decoration: BoxDecoration(
                 color: Color(0xFF8D5B4C),
                 border: Border.all(color: Colors.black), // Add border
@@ -42,13 +50,14 @@ class ProspectsView extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (context) => SignInView()),
                   );
+
                   // Add your logout logic here
                 },
                 child: Text(
                   'Logout',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 24,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -61,30 +70,45 @@ class ProspectsView extends StatelessWidget {
             return Column(
               children: [
                 // Filter Chips
-                Container(
-                  color: Color(0xFFFCEFEA),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buildFilterChip(
                         'All',
                         viewModel.selectedFilter == 'All',
                         viewModel,
                       ),
+                      SizedBox(width: 8),
                       _buildFilterChip(
                         'Pending',
                         viewModel.selectedFilter == 'Pending',
                         viewModel,
                       ),
+                      SizedBox(width: 8),
                       _buildFilterChip(
                         'On Visit',
                         viewModel.selectedFilter == 'On Visit',
                         viewModel,
                       ),
+                      SizedBox(width: 8),
                       _buildFilterChip(
                         'In Progress',
                         viewModel.selectedFilter == 'In Progress',
+                        viewModel,
+                      ),
+                      SizedBox(width: 8),
+                      _buildFilterChip(
+                        'Completed',
+                        viewModel.selectedFilter == 'Completed',
+                        viewModel,
+                      ),
+                      SizedBox(width: 8),
+                      _buildFilterChip(
+                        'Postponed',
+                        viewModel.selectedFilter == 'Postponed',
                         viewModel,
                       ),
                     ],
@@ -187,6 +211,9 @@ class ProspectsView extends StatelessWidget {
                 ],
               ),
               Container(
+                alignment: Alignment.center,
+                width: 80,
+                height: 30,
                 padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 decoration: BoxDecoration(
                   color: _getStatusColor(prospect.status!),
@@ -194,7 +221,11 @@ class ProspectsView extends StatelessWidget {
                 ),
                 child: Text(
                   prospect.status!,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    color: Color(0xFF93000A),
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -207,11 +238,11 @@ class ProspectsView extends StatelessWidget {
   Color _getStatusColor(String status) {
     switch (status) {
       case 'Pending':
-        return Colors.orange;
+        return Color(0xFFFFDBD1);
       case 'On Visit':
-        return Colors.yellow;
+        return Color(0xFFF5E1A7);
       case 'In Progress':
-        return Colors.blue;
+        return Colors.orange;
       case 'Completed':
         return Colors.green;
       case 'Postponed':

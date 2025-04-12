@@ -12,7 +12,7 @@ class SignInView extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => SignInViewModel(),
       child: Scaffold(
-        backgroundColor: Color(0xFFFCEFEA),
+        backgroundColor: Color(0XFFFCEAE5),
         body: Consumer<SignInViewModel>(
           builder: (context, viewModel, child) {
             return Padding(
@@ -42,7 +42,7 @@ class SignInView extends StatelessWidget {
                       labelText: 'Username',
                       hintText: 'Enter your username',
                       filled: true,
-                      fillColor: Color(0xFFFFF3F0),
+                      fillColor: Color(0XFFFFDBD0),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide: BorderSide.none,
@@ -54,7 +54,7 @@ class SignInView extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: 'Role',
                       filled: true,
-                      fillColor: Color(0xFFFFF3F0),
+                      fillColor: Color(0XFFFFDBD0),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide: BorderSide.none,
@@ -74,7 +74,7 @@ class SignInView extends StatelessWidget {
                       labelText: 'Password',
                       hintText: 'Enter your password',
                       filled: true,
-                      fillColor: Color(0xFFFFF3F0),
+                      fillColor: Color(0XFFFFDBD0),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide: BorderSide.none,
@@ -96,7 +96,8 @@ class SignInView extends StatelessWidget {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: Color(0xFF8D5B4C),
+                          backgroundColor: Color(0xFF8F4C38),
+                          foregroundColor: Colors.white,
                           padding: EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
