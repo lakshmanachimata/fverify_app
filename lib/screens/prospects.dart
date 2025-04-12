@@ -133,14 +133,20 @@ class ProspectsView extends StatelessWidget {
                 ),
                 // ListView
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: viewModel.filteredProspects.length,
-                    itemBuilder: (context, index) {
-                      return _buildProspectCard(
-                        viewModel.filteredProspects[index],
-                        context,
-                      );
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      // Call the fetchProspects method to refresh the data
+                      await context.read<ProspectsViewModel>().fetchProspects();
                     },
+                    child: ListView.builder(
+                      itemCount: viewModel.filteredProspects.length,
+                      itemBuilder: (context, index) {
+                        return _buildProspectCard(
+                          viewModel.filteredProspects[index],
+                          context,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],

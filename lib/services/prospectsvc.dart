@@ -11,7 +11,7 @@ class ProspectService {
 
     return List.generate(10, (index) {
       ProspectModel prospectModel = ProspectModel(
-        prospectId: 'Prospect ${index + 1}',
+        prospectId: 'Prospect ${index + random.nextInt(100)}',
         applicantName: 'Applicant ${index + 1}',
         mobileNumber: '+1 234 567 89${random.nextInt(100)}',
         gender: genders[random.nextInt(genders.length)],
