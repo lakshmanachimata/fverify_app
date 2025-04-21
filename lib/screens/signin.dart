@@ -50,23 +50,6 @@ class SignInView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 16),
-                  DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      labelText: 'Role',
-                      filled: true,
-                      fillColor: Color(0XFFFFDBD0),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    items: [
-                      DropdownMenuItem(value: 'Admin', child: Text('Admin')),
-                      DropdownMenuItem(value: 'User', child: Text('User')),
-                    ],
-                    onChanged: (value) {},
-                  ),
-                  SizedBox(height: 16),
                   TextField(
                     controller: viewModel.passwordController,
                     obscureText: true,
@@ -80,6 +63,19 @@ class SignInView extends StatelessWidget {
                         borderSide: BorderSide.none,
                       ),
                       suffixIcon: Icon(Icons.visibility_off),
+                    ),
+                  ),SizedBox(height: 32),
+                  TextField(
+                    controller: viewModel.orgIdController,
+                    decoration: InputDecoration(
+                      labelText: 'organization id',
+                      hintText: 'Enter Organization id',
+                      filled: true,
+                      fillColor: Color(0XFFFFDBD0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: BorderSide.none,
+                      ),
                     ),
                   ),
                   SizedBox(height: 32),
@@ -110,14 +106,6 @@ class SignInView extends StatelessWidget {
                           ),
                         ),
                       ),
-                  SizedBox(height: 16),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Color(0xFF8D5B4C)),
-                    ),
-                  ),
                 ],
               ),
             );

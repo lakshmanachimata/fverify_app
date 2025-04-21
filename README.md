@@ -1,6 +1,6 @@
 # cak_verify
 
-CAK Verify
+F Verify
 
 ## Getting Started
 

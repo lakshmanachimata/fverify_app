@@ -5,6 +5,7 @@ import '../models/signinmodel.dart';
 class SignInViewModel extends ChangeNotifier {
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
+  final orgIdController = TextEditingController();
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -24,6 +25,7 @@ class SignInViewModel extends ChangeNotifier {
     return SignInModel(
       username: userNameController.text,
       password: passwordController.text,
+      orgId: orgIdController.text,
     );
   }
 
@@ -31,6 +33,7 @@ class SignInViewModel extends ChangeNotifier {
   void dispose() {
     userNameController.dispose();
     passwordController.dispose();
+    orgIdController.dispose();
     super.dispose();
   }
 }
